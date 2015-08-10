@@ -1,0 +1,24 @@
+en:
+  PasswordMenu:
+    # Navbar Top Menu
+    CHANGEPASSWORD: 'Change password'
+  PasswordAdmin:
+    TITLE: 'Change your password'
+  PasswordEditForm:
+    FIRSTNAME: 'Firstname'
+    SURNAME: 'Surname'
+    EMAIL: 'Email'
+    CHANGEPASSWORD: 'Change password'
+    SUCCESS: 'Your password has been changed'
+  AdminMenu:
+    # Navbar Top Menu
+    ADMIN: 'Administration'
+    MEMBRES: 'All members'
+    ADDMEMBER: 'Add member'
+  AdminMembers:
+    TITLE: 'Members'
+  AdminMemberAdd:
+    TITLE: 'Add member'
+  AdminMemberEdit:
+    TITLE: 'Edit member'
+  

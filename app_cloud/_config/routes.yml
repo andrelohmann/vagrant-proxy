@@ -1,0 +1,9 @@
+---
+Name: customroutes
+After: framework/routes#coreroutes
+---
+Director:
+  rules:
+    'cloud//$Action/$ID/$OtherID' : 'CloudController'
+    'passwordadmin//$Action/$ID/$OtherID' : 'PasswordAdminController'
+    'administration//$Action/$ID/$OtherID' : 'AdministrationController'
