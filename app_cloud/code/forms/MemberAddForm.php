@@ -74,3 +74,4 @@ class MemberAddForm extends BootstrapHorizontalForm {
         $this->controller->redirect('administration/members');
     }
 }
+
