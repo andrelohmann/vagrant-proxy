@@ -4,19 +4,19 @@
  * @package some config
  * http://doc.silverstripe.org/framework/en/3.1/topics/controller
  */
-class AdministrationController extends Controller {
+class BoxAdminController extends Controller {
 	
 	public static $url_topic = 'administration';
 	
-	public static $url_segment = 'administration';
+	public static $url_segment = 'boxadmin';
 	
 	private static $allowed_actions = array( 
 		'index',
-		'members',
-        'memberAdd',
-        'MemberAddForm',
-        'memberEdit',
-        'MemberEditForm'
+        'boxes',
+        'boxAdd',
+        'BoxAddForm',
+        'boxEdit',
+        'BoxEditForm'
 	);
 	
 	public static $template = 'BlankPage';
@@ -50,7 +50,7 @@ class AdministrationController extends Controller {
 	 * @return string Returns the "login" page as HTML code.
 	 */
 	public function index() {
-            $this->redirect('administration/members');
+            $this->redirect('boxadmin/boxes');
 	}
 
 	/**
@@ -58,13 +58,13 @@ class AdministrationController extends Controller {
 	 *
 	 * @return string Returns the members page as HTML code.
 	 */
-	public function members(){
+	public function boxes(){
 		
 		return $this->customise(new ArrayData(array(
-			"Title" => _t('AdminMembers.TITLE', 'AdminMembers.TITLE'),
-			"Members" => Member::get()
+			"Title" => _t('AdminBoxes.TITLE', 'AdminBoxes.TITLE'),
+			"Boxes" => Box::get()
 		)))->renderWith(
-			array('Administration_members', 'Administration', $this->stat('template_main'), $this->stat('template'))
+			array('BoxAdmin_boxes', 'BoxAdmin', $this->stat('template_main'), $this->stat('template'))
         );
 	}
 
@@ -73,18 +73,18 @@ class AdministrationController extends Controller {
 	 *
 	 * @return string Returns the member add page as HTML code.
 	 */
-	public function memberAdd() {
+	public function boxAdd() {
 		
 		return $this->customise(new ArrayData(array(
-            "Title" => _t('AdminMemberAdd.TITLE', 'AdminMemberAdd.TITLE'),
-            "Form" => $this->MemberAddForm()
+            "Title" => _t('AdminBoxAdd.TITLE', 'AdminBoxAdd.TITLE'),
+            "Form" => $this->BoxAddForm()
         )))->renderWith(
-            array('Administration_memberadd', 'Administration', $this->stat('template_main'), $this->stat('template'))
+            array('BoxAdmin_boxadd', 'BoxAdmin', $this->stat('template_main'), $this->stat('template'))
         );
 	}
         
-    public function MemberAddForm(){
-        return MemberAddForm::create($this, "MemberAddForm");
+    public function BoxAddForm(){
+        return BoxAddForm::create($this, "BoxAddForm");
     }
 
 	/**
@@ -92,20 +92,20 @@ class AdministrationController extends Controller {
 	 *
 	 * @return string Returns the member edit page as HTML code.
 	 */
-	public function memberEdit() {
+	public function boxEdit() {
             
-        if($Member = Member::get()->byID($this->request->param('ID'))) $GLOBALS['MemberID'] = $Member->ID;
+        if($Box = Box::get()->byID($this->request->param('ID'))) $GLOBALS['BoxID'] = $Box->ID;
             
         return $this->customise(new ArrayData(array(
-            "Title" => _t('AdminMemberEdit.TITLE', 'AdminMemberEdit.TITLE'),
-            "Form" => $this->MemberEditForm(),
-            "Member" => $Member
+            "Title" => _t('AdminBoxEdit.TITLE', 'AdminBoxEdit.TITLE'),
+            "Form" => $this->BoxEditForm(),
+            "Box" => $Box
         )))->renderWith(
-            array('Administration_memberedit', 'Administration', $this->stat('template_main'), $this->stat('template'))
+            array('BoxAdmin_boxedit', 'BoxAdmin', $this->stat('template_main'), $this->stat('template'))
         );
 	}
         
-    public function MemberEditForm(){
-        return MemberEditForm::create($this, "MemberEditForm");
+    public function BoxEditForm(){
+        return BoxEditForm::create($this, "BoxEditForm");
     }
 }

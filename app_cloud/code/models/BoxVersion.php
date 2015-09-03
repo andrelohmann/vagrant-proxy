@@ -20,4 +20,12 @@ class BoxVersion extends DataObject {
 		'Providers' => 'BoxProvider'
 	);
 	
+	public function onBeforeDelete() {
+		parent::onBeforeDelete();
+		
+		foreach($this->Providers() as $Provider){
+			$Provider_>delete();
+		}
+	}
+	
 }

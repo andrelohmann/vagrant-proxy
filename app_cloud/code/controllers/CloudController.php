@@ -22,6 +22,13 @@ class CloudController extends Controller {
 	 * @var string
 	 */
 	public static $template_main = 'Page';
+
+	/**
+	 * Returns a link to this controller.  Overload with your own Link rules if they exist.
+	 */
+	public function Link() {
+		return self::$url_segment .'/';
+	}
 	
 	/**
 	 * Initialise the controller
@@ -42,7 +49,8 @@ class CloudController extends Controller {
         // Vorerst keine Seite erstellt
         return $this->customise(new ArrayData(array(
             "Title" => _t('Cloud.TITLE', 'Cloud.TITLE'),
-            "Boxes" => Box::get()
+            "PublicBoxes" => Box::get()->filter(array('Public' => true)),
+			"MyBoxes" => Member::currentUser()->Boxes()
         )))->renderWith(
             array('Cloud_index', 'Home', $this->stat('template_main'), $this->stat('template'))
         );

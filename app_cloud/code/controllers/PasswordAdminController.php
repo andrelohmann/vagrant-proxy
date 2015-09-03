@@ -23,6 +23,13 @@ class PasswordAdminController extends Controller {
 	 * @var string
 	 */
 	public static $template_main = 'Page';
+
+	/**
+	 * Returns a link to this controller.  Overload with your own Link rules if they exist.
+	 */
+	public function Link() {
+		return self::$url_segment .'/';
+	}
 	
 	/**
 	 * Initialise the controller
@@ -41,7 +48,7 @@ class PasswordAdminController extends Controller {
 	public function index() {
             
             return $this->customise(new ArrayData(array(
-                "Title" => t("PasswordAdmin.TITLE", "PasswordAdmin.TITLE"),
+                "Title" => _t("PasswordAdmin.TITLE", "PasswordAdmin.TITLE"),
                 "Form" => $this->PasswordEditForm()
             )))->renderWith(
                 array('PasswordAdmin_index', 'PasswordAdmin', $this->stat('template_main'), $this->stat('template'))

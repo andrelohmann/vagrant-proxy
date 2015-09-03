@@ -19,4 +19,10 @@ class BoxProvider extends DataObject {
 		'File' => 'File'
 	);
 	
+	public function onBeforeDelete() {
+		parent::onBeforeDelete();
+		
+		$this->File()->delete();
+	}
+	
 }

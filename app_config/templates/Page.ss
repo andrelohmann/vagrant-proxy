@@ -34,14 +34,15 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="<% if $URLSegment == passwordadmin %>active<% end_if %>"><a href="passwordadmin/index"><%t PasswordMenu.CHANGEPASSWORD "PasswordMenu.CHANGEPASSWORD" %></a></li>
                         <% if $CurrentMember.IsAdmin %>
-                        <li class="dropdown<% if $URLSegment == administration %> active<% end_if %>"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%t AdminMenu.ADMIN "AdminMenu.ADMIN" %> <span class="caret"></span></a>
+                        <li class="dropdown<% if $URLTopic == administration %> active<% end_if %>"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%t AdminMenu.ADMIN "AdminMenu.ADMIN" %> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li class="<% if $URLPath == boxadmin/boxes %>active<% end_if %>"><a href="boxadmin/boxes"><%t BoxAdminMenu.BOXES "BoxAdminMenu.BOXES" %></a></li>
+                                <li class="<% if $URLPath == boxadmin/boxAdd %>active<% end_if %>"><a href="boxadmin/boxAdd"><%t BoxAdminMenu.ADDBOX "BoxAdminMenu.ADDBOX" %></a></li>
                                 <li class="<% if $URLPath == administration/members %>active<% end_if %>"><a href="administration/members"><%t AdminMenu.MEMBERS "AdminMenu.MEMBERS" %></a></li>
-                                <li class="<% if $URLPath == administration/memberAdd %>active<% end_if %>"><a href="administration/memberAdd"><%t AdminMenu.ADDMEMBER "AdminMenu.ADDMEMBERS" %></a></li>
+                                <li class="<% if $URLPath == administration/memberAdd %>active<% end_if %>"><a href="administration/memberAdd"><%t AdminMenu.ADDMEMBER "AdminMenu.ADDMEMBER" %></a></li>
                             </ul>
                         </li>
                         <% end_if %>
-                        <li><a href="Security/logout"><%t TopMenu.LOGOUT "TopMenu.LOGOUT" %></a></li>
                     </ul>
                     <% end_if %>
                 </div><!--/.navbar-collapse -->

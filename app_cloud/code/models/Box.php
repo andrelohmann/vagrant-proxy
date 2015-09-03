@@ -9,13 +9,29 @@
 class Box extends DataObject {
 	
 	private static $db = array(
-		'Name' => 'Varchar(255)',
-		'NameSlug' => 'Varchar(255)',
-		'Description' => 'Varchar(255)'
+		'Title' => 'Varchar(255)',
+		'Description' => 'Text',
+		'Public' => 'Boolean'
 	);
 	
 	private static $has_many = array(
 		'Versions' => 'BoxVersion'
 	);
+	
+	private static $belongs_many_many = array(
+		'Members' => 'Member'
+	);
+	
+	public function onBeforeDelete() {
+		parent::onBeforeDelete();
+		
+		foreach($this->Versions() as $Version){
+			$Version->delete();
+		}
+	}
+	
+	public function Link(){
+		return Director::absoluteBaseURL()."box/json/".$this->ID."/".$this->Slug;
+	}
 	
 }
