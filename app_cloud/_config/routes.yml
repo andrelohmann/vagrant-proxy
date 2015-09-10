@@ -8,3 +8,4 @@ Director:
     'passwordadmin//$Action/$ID/$OtherID' : 'PasswordAdminController'
     'administration//$Action/$ID/$OtherID' : 'AdministrationController'
     'boxadmin//$Action/$ID/$OtherID' : 'BoxAdminController'
+    'box//$Action/$ID/$OtherID' : 'BoxController'

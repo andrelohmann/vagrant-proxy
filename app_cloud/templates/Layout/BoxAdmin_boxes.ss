@@ -8,6 +8,7 @@
             <th>ID</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Versions</th>
             <th>Public</th>
             <th>Bearbeiten</th>
         </tr>
@@ -16,6 +17,15 @@
             <td>$ID</td>
             <td>$Title</td>
             <td>$Description</td>
+            <td>
+				<% if $Versions %>
+				<ul>
+				<% loop $Versions %>
+				<li>$Version</li>
+				<% end_loop %>
+				</ul>
+				<% end_if %>
+			</td>
             <td><% if $Public %><i class="glyphicon glyphicon-ok"></i><% end_if %></td>
             <td><a href="boxadmin/boxEdit/$ID" class="btn btn-warning">Bearbeiten</a></td>
         </tr>

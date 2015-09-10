@@ -6,19 +6,20 @@
  * and open the template in the editor.
  */
 
-class BoxAddForm extends BootstrapHorizontalForm {
+class BoxEditForm extends BootstrapHorizontalForm {
     
     public function __construct($controller, $name, $fields = null, $actions = null) {
         
         $fields = new FieldList(
-            TextField::create('Title')->setTitle(_t('Box.TITLE', 'Box.TITLE')),
+			ReadonlyField::create('Title')->setTitle(_t('Box.TITLE', 'Box.TITLE')),
             TextareaField::create('Description')->setTitle(_t('Box.DESCRIPTION', 'Box.DESCRIPTION')),
             CheckboxField::create("Public")->setTitle(_t('Box.PUBLIC', 'Box.PUBLIC')),
-			$Members = CheckboxSetField::create('Members')->setTitle(_t('Box.MEMBERS', 'Box.MEMBERS'))->setSource(Member::get()->map('ID', 'Name'))
+			$Members = CheckboxSetField::create('Members')->setTitle(_t('Box.MEMBERS', 'Box.MEMBERS'))->setSource(Member::get()->map('ID', 'Name')),
+            HiddenField::create('BoxID')
         );
         
         $actions = new FieldList(
-            $Submit = BootstrapLoadingFormAction::create('doAdd')->setTitle(_t('BoxAddForm.DOADD', 'BoxAddForm.DOADD'))
+            $Submit = BootstrapLoadingFormAction::create('doEdit')->setTitle(_t('BoxEditForm.DOEDIT', 'BoxEditForm.DOEDIT'))
         );
          
         parent::__construct(
@@ -27,25 +28,24 @@ class BoxAddForm extends BootstrapHorizontalForm {
             $fields,
             $actions,
             new RequiredFields(
-                "Title",
                 "Description"
             )
         );
+        
+        if(isset($GLOBALS['BoxID'])){
+            $Box = Box::get()->byID($GLOBALS['BoxID']);
+            $this->loadDataFrom($Box);
+        }
     }
     
-    public function doAdd(array $data) {
+    public function doEdit(array $data) {
+        
+        if($Box = Box::get()->byID($data['ID'])){
+        
+            $this->saveInto($Box);
             
-        if($Box = Box::get()->filter(array("Title" => $data['Title']))->first()){
-            $this->addErrorMessage('Title', _t('BoxAddForm.TITLEEXISTS', 'BoxAddForm.TITLEEXISTS'), 'bad');
-            $this->controller->redirectBack();
-            return false;
+            $Box->write();
         }
-        
-        $Box = Box::create();
-        
-        $this->saveInto($Box);
-        
-        $Box->write();
         
         $this->controller->redirect('boxadmin/boxes');
     }

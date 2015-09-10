@@ -34,4 +34,31 @@ class Box extends DataObject {
 		return Director::absoluteBaseURL()."box/json/".$this->ID."/".$this->Slug;
 	}
 	
+	public function json(){
+		
+		$json = array(
+			"name" => $this->Slug,
+			"description" => $this->Description,
+			"versions" => array()
+		);
+		
+		foreach($this->Versions()->sort('Version') as $Version){
+			$providers = array();
+			foreach($Version->Providers() as $Provider){
+				$providers[] = array(
+					"name" => $Provider->Name,
+					"url" => $Provider->File()->getAbsoluteURL(),
+					"checksum_type" => $Provider->ChecksumType,
+					"checksum" => $Provider->Checksum
+				);
+			}
+			$json['versions'][] = array(
+				"version" => $Version->Version,
+				"providers" => $providers
+			);
+		}
+		
+		return $json;
+	}
+	
 }

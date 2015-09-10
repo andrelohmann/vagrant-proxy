@@ -49,6 +49,7 @@ class CloudController extends Controller {
         // Vorerst keine Seite erstellt
         return $this->customise(new ArrayData(array(
             "Title" => _t('Cloud.TITLE', 'Cloud.TITLE'),
+			"Content" => _t('Cloud.CONTENT', 'Cloud.CONTENT'),
             "PublicBoxes" => Box::get()->filter(array('Public' => true)),
 			"MyBoxes" => Member::currentUser()->Boxes()
         )))->renderWith(

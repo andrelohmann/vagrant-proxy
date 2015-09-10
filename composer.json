@@ -77,10 +77,10 @@
                 "andrelohmann-silverstripe/smtpmailer": "2.0.0",
                 "andrelohmann-silverstripe/geoip": "2.0.0",
                 "andrelohmann-silverstripe/localegeoip": "2.0.0",
-                "andrelohmann-silverstripe/geoform": "2.0.0",
+                "andrelohmann-silverstripe/geoform": "2.0.1",
                 "andrelohmann-silverstripe/extendedobjects": "2.0.0",
                 "andrelohmann-silverstripe/dependentdropdownfield": "2.0.0",
-                "andrelohmann-silverstripe/bootstrap_extra_fields": "2.0.0",
+                "andrelohmann-silverstripe/bootstrap_extra_fields": "2.1.0",
                 "andrelohmann-silverstripe/bootstrap-tagfield": "1.0.0",
                 "andrelohmann-silverstripe/bootstrap_navbar_languageform": "2.0.0",
                 "andrelohmann-silverstripe/bootstrap_navbar_loginform": "2.0.0",
@@ -92,7 +92,7 @@
         "scripts": {
             "post-install-cmd": [
                 "cp -r vendor/andrelohmann-silverstripe/framework-fixes/* framework/",
-                "mkdir silverstripe-cache",
+                "mkdir -p silverstripe-cache",
                 "chmod 777 -R silverstripe-cache/ assets/",
                 "php framework/cli-script.php dev/build flush=1"
             ],

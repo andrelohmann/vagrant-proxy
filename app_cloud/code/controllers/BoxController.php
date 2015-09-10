@@ -12,7 +12,11 @@ class BoxController extends Controller {
 	
 	private static $allowed_actions = array( 
 		'index',
-		'json'
+		'json',
+		'addVersion',
+		'BoxAddVersionForm',
+		'editVersion',
+		'editVersions'
 	);
 	
 	public static $template = 'BlankPage';
@@ -58,34 +62,32 @@ class BoxController extends Controller {
 		
 		if($Box = Box::get()->byID($this->request->param('ID'))){
 			
-			$json = array(
-				"name" => $Box->Slug,
-				"description" => $Box->Description,
-				"versions" => array()
-			);
 			
-			foreach($Box->Versions()->sort('Version') as $Version){
-				$providers = array();
-				foreach($Version->Providers() as $Provider){
-					$providers[] = array(
-						"name" => $Provider->Name,
-						"url" => $Provider->File()->getAbsoluteURL(),
-						"checksum_type" => $Provider->ChecksumType,
-						"checksum" => $Provider->Checksum
-					);
-				}
-				$json['versions'][] = array(
-					"version" => $Version->Version,
-					"providers" => $providers
-				);
-			}
-			
-			
-			return $this->jsonResponse($json);
+			return $this->jsonResponse($Box->json());
 		}else{
 			return $this->jsonResponse(array('error' => 'invalid box id'));
 		}
-            
-		
 	}
+
+	/**
+	 * Show the member edit page
+	 *
+	 * @return string Returns the member edit page as HTML code.
+	 */
+	public function addVersion() {
+            
+        if($Box = Box::get()->byID($this->request->param('ID'))) $GLOBALS['BoxID'] = $Box->ID;
+            
+        return $this->customise(new ArrayData(array(
+            "Title" => _t('BoxAddVersion.TITLE', 'BoxAddVersion.TITLE'),
+            "Form" => $this->BoxAddVersionForm(),
+            "Box" => $Box
+        )))->renderWith(
+            array('Box_addversion', 'Box', $this->stat('template_main'), $this->stat('template'))
+        );
+	}
+        
+    public function BoxAddVersionForm(){
+        return BoxAddVersionForm::create($this, "BoxAddVersionForm");
+    }
 }

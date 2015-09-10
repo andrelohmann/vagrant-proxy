@@ -21,5 +21,9 @@ en:
     TITLE: 'Add member'
   AdminMemberEdit:
     TITLE: 'Edit member'
+  Cloud:
+    TITLE: 'All personal and public boxes'
+    CONTENT: >
+      Prepare your vagrant boxes by following the paradigms of <a href="https://github.com/hollodotme/Helpers/blob/master/Tutorials/vagrant/self-hosted-vagrant-boxes-with-versioning.md">this tutorial</a>.
   
   
