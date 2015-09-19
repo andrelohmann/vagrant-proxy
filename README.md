@@ -30,7 +30,10 @@
 ## Overview
 this Project provides a software tool, to build your own selfhosted vargant cloud based on the following tutorial
 
-https://github.com/hollodotme/Helpers/blob/master/Tutorials/vagrant/self-hosted-vagrant-boxes-with-versioning.md
+ * Following this introduction http://aruizca.com/steps-to-create-a-vagrant-base-box-with-ubuntu-14-04-desktop-gui-and-virtualbox/
+ * create minimal ubuntu virtual box with dhcp/nat; use vmdk for disk image
+ * create user vagrant, password vagrant for compatibillity reasons
+ * Build our own vagrant cloud https://github.com/hollodotme/Helpers/blob/master/Tutorials/vagrant/self-hosted-vagrant-boxes-with-versioning.md#5-hostingg
 
 ## Installation
 
