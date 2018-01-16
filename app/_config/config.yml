@@ -1,5 +1,5 @@
 ---
-Name: app_config
+Name: app
 After: 'framework/*'
 ---
 # YAML configuration for SilverStripe
@@ -7,7 +7,3 @@ After: 'framework/*'
 # Caution: Indentation through two spaces, not tabs
 SSViewer:
   theme: 'bootstrap'
-
-Member:
-  extensions:
-    - VisitsMemberExtension

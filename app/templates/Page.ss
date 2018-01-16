@@ -29,7 +29,6 @@
                         <li class="<% if $URLPath == cloud/index %>active<% end_if %>"><a href="cloud/index"><%t TopMenu.CLOUD "TopMenu.CLOUD" %></a></li>
                     </ul>
                     <% end_if %>
-                    $BootstrapNavbarModalLoginForm
                     <% if $CurrentMember %>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="<% if $URLSegment == passwordadmin %>active<% end_if %>"><a href="passwordadmin/index"><%t PasswordMenu.CHANGEPASSWORD "PasswordMenu.CHANGEPASSWORD" %></a></li>
@@ -48,7 +47,6 @@
                 </div><!--/.navbar-collapse -->
             </div>
         </nav>
-        $BootstrapNavbarModalLoginForm.Modal
 
         $Layout
 
@@ -62,10 +60,6 @@
                         <span class="icon-bar"></span>
                     </button>
                     <p class="navbar-text navbar-left">&copy; 2015</p>
-                </div>
-                
-                <div class="collapse navbar-collapse" id="bottom-navigation">
-                    $BootstrapNavbarLanguageForm
                 </div>
             </div>
         </nav>
